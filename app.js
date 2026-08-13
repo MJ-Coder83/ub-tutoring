@@ -56,6 +56,29 @@ document.querySelectorAll('[data-package]').forEach(el => {
   });
 });
 
+/* --- Keep the footer clear of the fixed mobile CTA bar ------------------ */
+const stickyCta = document.querySelector('.sticky-cta');
+if (stickyCta) {
+  const syncStickyHeight = () => {
+    const height = Math.ceil(stickyCta.getBoundingClientRect().height);
+    // Height is 0 once the bar is hidden at desktop widths; keep the last real
+    // value so the mobile rule still has something sensible to fall back on.
+    if (height > 0) {
+      document.documentElement.style.setProperty('--sticky-cta-h', height + 'px');
+    }
+  };
+  syncStickyHeight();
+  window.addEventListener('resize', syncStickyHeight);
+  if (window.ResizeObserver) {
+    // border-box, so padding and the safe-area inset count toward the height.
+    new ResizeObserver(syncStickyHeight).observe(stickyCta, { box: 'border-box' });
+  }
+  // Webfonts land after first paint and can reflow the sub-label.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncStickyHeight);
+  }
+}
+
 /* --- Enquiry form ------------------------------------------------------ */
 const consentBox = document.getElementById('c-consent');
 const submitBtn = document.getElementById('submitBtn');

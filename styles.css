@@ -75,3 +75,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 /* Hero lead-in hook: held to a single line from 900px up, wraps below that */
 .hero-hook{font-size:clamp(0.95rem,1.5vw,1.15rem);font-weight:700;color:var(--white);line-height:1.5;margin-bottom:12px;max-width:none}
 @media(min-width:900px){.hero-hook{white-space:nowrap}}
+
+/* Footer must clear the fixed mobile CTA bar; its height is measured in app.js
+   because it changes with font size and the sub-label's wrapping. */
+@media(max-width:767px){footer{padding-bottom:calc(var(--sticky-cta-h,110px) + 28px)}}
