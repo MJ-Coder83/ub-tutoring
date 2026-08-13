@@ -109,3 +109,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 /* CTAs jump to the form itself, so it needs the same clearance as any anchor */
 #enquiry{scroll-margin-top:calc(var(--ticker-h) + 84px)}
 @media(min-width:768px){#enquiry{scroll-margin-top:calc(var(--ticker-h) + 92px)}}
+
+/* .nav has a backdrop-filter, which makes it the containing block for any
+   fixed child — so the menu's viewport-based top offset was measured from
+   the nav instead, leaving a gap. Position it against the nav directly. */
+.mobile-menu{position:absolute;top:100%;left:0;right:0}
+@media(min-width:768px){.mobile-menu{top:100%}}
+
+/* The bottom bar is gone, so the footer no longer needs to clear it */
+@media(max-width:767px){footer{padding-bottom:40px}}
