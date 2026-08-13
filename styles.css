@@ -30,15 +30,6 @@ html{scroll-padding-top:calc(var(--ticker-h) + 78px)}
 .hero{padding-top:calc(100px + var(--ticker-h))}
 @media(min-width:768px){.hero{padding-top:calc(140px + var(--ticker-h))}}
 
-/* --- Headline result banner -------------------------------- */
-.results-headline{display:grid;gap:16px;justify-items:center;text-align:center;background:rgba(201,123,69,0.12);border:1px solid rgba(201,123,69,0.4);border-radius:var(--radius-lg);padding:28px 22px;margin-bottom:36px}
-@media(min-width:800px){.results-headline{grid-template-columns:auto 1fr auto;justify-items:start;text-align:left;align-items:center;gap:28px;padding:32px 36px}}
-.results-headline-num{font-size:clamp(1.9rem,6vw,2.6rem);font-weight:700;color:var(--gold);line-height:1.1;letter-spacing:-0.02em;white-space:nowrap}
-.results-headline-text{font-size:1rem;color:rgba(255,255,255,0.85);line-height:1.6}
-.results-headline-text strong{color:var(--white);font-weight:700}
-.results-headline .btn{width:100%;white-space:nowrap}
-@media(min-width:800px){.results-headline .btn{width:auto}}
-
 /* --- FAQ heading wrapper ----------------------------------- */
 .faq-h{margin:0;font-size:inherit;font-weight:inherit}
 
