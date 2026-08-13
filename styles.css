@@ -76,3 +76,32 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
 /* The featured testimonial sits on navy, so the muted role colour is unreadable */
 .testimonial-card.featured .testimonial-role{color:rgba(255,255,255,0.7)}
+
+/* ============================================================
+   Testimonials: featured card above a horizontal scroller
+   ============================================================ */
+
+.testimonial-featured{margin-bottom:20px}
+.testimonial-featured .testimonial-card.featured{grid-column:auto}
+
+.testimonial-scroller-wrap{position:relative;display:flex;align-items:center;gap:10px}
+
+.testimonial-scroller{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 16px;flex:1;min-width:0;
+  scrollbar-width:thin;scrollbar-color:var(--gold) rgba(14,58,71,0.12)}
+.testimonial-scroller::-webkit-scrollbar{height:8px}
+.testimonial-scroller::-webkit-scrollbar-track{background:rgba(14,58,71,0.08);border-radius:100px}
+.testimonial-scroller::-webkit-scrollbar-thumb{background:var(--gold);border-radius:100px}
+.testimonial-scroller:focus-visible{outline:3px solid var(--gold);outline-offset:4px;border-radius:var(--radius)}
+
+.testimonial-scroller .testimonial-card{flex:0 0 82%;scroll-snap-align:start;margin:0}
+@media(min-width:600px){.testimonial-scroller .testimonial-card{flex-basis:48%}}
+@media(min-width:1000px){.testimonial-scroller .testimonial-card{flex-basis:31.5%}}
+
+/* Arrows are a desktop affordance; touch users swipe instead. */
+.scroll-btn{display:none;flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);background:var(--white);color:var(--navy);cursor:pointer;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s,opacity 0.2s}
+.scroll-btn:hover:not(:disabled){background:var(--navy);color:var(--white);border-color:var(--navy)}
+.scroll-btn:disabled{opacity:0.3;cursor:default}
+@media(min-width:768px){.scroll-btn{display:flex}}
+
+.scroller-hint{margin-top:4px;font-size:0.85rem;color:var(--text-muted);text-align:center}
+@media(min-width:768px){.scroller-hint{display:none}}

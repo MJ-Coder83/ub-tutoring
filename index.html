@@ -375,14 +375,21 @@
       <div class="section-label">What students &amp; parents say</div>
       <h2 class="section-title">Trusted by families who want the best</h2>
     </div>
-    <div class="testimonial-grid" id="testimonialGrid">
+    <div class="testimonial-featured">
       <div class="testimonial-card featured">
         <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <blockquote>&ldquo;Over the two years prior to finding Mr. Ba, we had engaged two other tutors for Theo, but the arrangements were short-lived and ultimately ineffective. His experience with Mr. Ba was entirely different &mdash; he genuinely looked forward to each session and, more importantly, became self-motivated to complete work independently without any prompting. There was something distinct about Mr. Ba's approach that made a real impact, and I remain incredibly grateful for the support he provided, both to Theo and through our own conversations.&rdquo;</blockquote>
         <div class="testimonial-author">Paul S.</div>
         <div class="testimonial-role">Parent of former tutee</div>
       </div>
+    </div>
 
+    <div class="testimonial-scroller-wrap">
+      <button type="button" class="scroll-btn scroll-prev" id="testimonialPrev" aria-label="Scroll to previous testimonials" aria-controls="testimonialScroller">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+
+      <div class="testimonial-scroller" id="testimonialScroller" role="region" aria-label="More testimonials from students and parents" tabindex="0">
       <div class="testimonial-card">
         <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <blockquote>&ldquo;Mr. Ba is a dedicated teacher who genuinely cares about his students and the subject matter. After being predicted a C in A-Level Economics, I spent extra time studying with him and was able to achieve an A in the final exam.&rdquo;</blockquote>
@@ -459,7 +466,13 @@
         <div class="testimonial-author">Johnny I.</div>
         <div class="testimonial-role">Economics student &middot; Prospective Economics undergraduate at UCL</div>
       </div>
+      </div>
+
+      <button type="button" class="scroll-btn scroll-next" id="testimonialNext" aria-label="Scroll to more testimonials" aria-controls="testimonialScroller">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
     </div>
+    <p class="scroller-hint">Swipe or scroll to read more &rarr;</p>
     <div class="testimonials-cta">
       <a href="#contact" class="btn btn-primary btn-lg">Start Your Child's Journey &rarr;</a>
     </div>

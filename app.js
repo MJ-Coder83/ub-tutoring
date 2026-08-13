@@ -56,6 +56,84 @@ document.querySelectorAll('[data-package]').forEach(el => {
   });
 });
 
+/* --- Testimonial scroller ---------------------------------------------- */
+const scroller = document.getElementById('testimonialScroller');
+const scrollPrev = document.getElementById('testimonialPrev');
+const scrollNext = document.getElementById('testimonialNext');
+
+if (scroller && scrollPrev && scrollNext) {
+  const step = () => {
+    const card = scroller.querySelector('.testimonial-card');
+    if (!card) return scroller.clientWidth;
+    const gap = parseFloat(getComputedStyle(scroller).columnGap) || 16;
+    return card.getBoundingClientRect().width + gap;
+  };
+
+  const syncArrows = () => {
+    const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+    scrollPrev.disabled = scroller.scrollLeft <= 1;
+    // 1px of slack: fractional card widths stop scrollLeft hitting maxScroll exactly.
+    scrollNext.disabled = scroller.scrollLeft >= maxScroll - 1;
+  };
+
+  const scrollByCard = direction => scroller.scrollBy({ left: direction * step(), behavior: 'smooth' });
+
+  scroller.addEventListener('scroll', syncArrows, { passive: true });
+  window.addEventListener('resize', syncArrows);
+  syncArrows();
+
+  /* Auto-advance one card every 15s, looping back to the start at the end.
+     Pauses while the visitor is hovering, keyboard-focused inside, or on
+     another tab, and never runs for visitors who ask for reduced motion. */
+  const AUTOSCROLL_MS = 15000;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const wrap = scroller.closest('.testimonial-scroller-wrap');
+  let autoTimer = null;
+  let paused = false;
+
+  const advance = () => {
+    const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+    if (scroller.scrollLeft >= maxScroll - 1) {
+      scroller.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      scrollByCard(1);
+    }
+  };
+
+  const startAuto = () => {
+    if (autoTimer || reduceMotion.matches) return;
+    autoTimer = setInterval(() => {
+      if (!paused && !document.hidden) advance();
+    }, AUTOSCROLL_MS);
+  };
+
+  const stopAuto = () => {
+    clearInterval(autoTimer);
+    autoTimer = null;
+  };
+
+  // Restart the countdown after a manual move so it doesn't jump immediately.
+  const restartAuto = () => { stopAuto(); startAuto(); };
+
+  scrollPrev.addEventListener('click', () => { scrollByCard(-1); restartAuto(); });
+  scrollNext.addEventListener('click', () => { scrollByCard(1); restartAuto(); });
+
+  if (wrap) {
+    wrap.addEventListener('mouseenter', () => { paused = true; });
+    wrap.addEventListener('mouseleave', () => { paused = false; });
+    wrap.addEventListener('focusin', () => { paused = true; });
+    wrap.addEventListener('focusout', () => { paused = false; });
+    wrap.addEventListener('touchstart', restartAuto, { passive: true });
+  }
+
+  reduceMotion.addEventListener('change', () => {
+    if (reduceMotion.matches) stopAuto();
+    else startAuto();
+  });
+
+  startAuto();
+}
+
 /* --- Keep the footer clear of the fixed mobile CTA bar ------------------ */
 const stickyCta = document.querySelector('.sticky-cta');
 if (stickyCta) {
