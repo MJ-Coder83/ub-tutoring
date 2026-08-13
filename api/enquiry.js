@@ -11,7 +11,7 @@
  * only), so app.js falls back to FormSubmit there.
  */
 
-const FIELDS = ['Package', 'Name', 'Email', 'Level', 'Exam Board', 'Focus', 'Comments'];
+const FIELDS = ['Package', 'Name', 'Email', 'Level', 'Exam Board', 'Focus', 'Comments', 'Newsletter'];
 const MAX_LENGTH = 2000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

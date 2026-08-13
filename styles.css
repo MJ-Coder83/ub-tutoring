@@ -70,3 +70,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 /* Footer must clear the fixed mobile CTA bar; its height is measured in app.js
    because it changes with font size and the sub-label's wrapping. */
 @media(max-width:767px){footer{padding-bottom:calc(var(--sticky-cta-h,110px) + 28px)}}
+
+/* Newsletter opt-in sits just above the required consent checkbox */
+.newsletter-group{margin-bottom:12px}
+
+/* The featured testimonial sits on navy, so the muted role colour is unreadable */
+.testimonial-card.featured .testimonial-role{color:rgba(255,255,255,0.7)}
